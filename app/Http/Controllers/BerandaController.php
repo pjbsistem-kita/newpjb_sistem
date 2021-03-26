@@ -16,7 +16,6 @@ class BerandaController extends Controller
         return view('Template.dashboard');
     }
 
-
     public function dataecp()
     {
         return view('Halaman.data-ecp');
@@ -86,5 +85,32 @@ class BerandaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cetakWord()
+    {
+        $wordTest = new \PhpOffice\PhpWord\PhpWord();
+ 
+        // $newSection = $wordTest->addSection();
+     
+        // $desc1 = "The Portfolio details is a very useful feature of the web page. You can establish your archived details and the works to the entire web community. It was outlined to bring in extra clients, get you selected based on this details.";
+     
+        // $newSection->addText($desc1, array('name' => 'Tahoma', 'size' => 15, 'color' => 'red'));
+     
+        // $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($wordTest, 'Word2007');
+        // try {
+        //     $objectWriter->save(storage_path('TestWordFile.pdf'));
+        // } catch (Exception $e) {
+        // }
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('EcpForm.docx'));
+
+        $templateProcessor->setValue('no_peralatan', '123');
+        $templateProcessor->setValue('ecp_no', '123');
+        $templateProcessor->setValue('deskripsi', 'asadasd');
+        $templateProcessor->setValue('alasan', 'asadasdasdas');
+
+        $templateProcessor->saveAs('EcpForm1.docx');
+        
+        return response()->download(public_path('EcpForm1.docx'));
     }
 }

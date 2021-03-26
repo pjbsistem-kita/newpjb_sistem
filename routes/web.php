@@ -22,6 +22,7 @@ Route::get('/login', function () {
 Route::post('/postlogin', 'LoginController@postlogin')->name('postlogin');
 Route::get('/logout', 'LoginController@logout')->name('logout');
 Route::get('/beranda', 'BerandaController@index');
+Route::get('/cetakword', 'BerandaController@cetakWord');
 
 
 //super user
